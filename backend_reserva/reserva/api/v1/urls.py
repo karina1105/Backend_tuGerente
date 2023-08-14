@@ -22,7 +22,7 @@ urlpatterns=[
     path('lista_estado_habitacion/', EstadosHabitacion.as_view(), name = "Lista de estados para las habitaciones"),
     path('lista_habitaciones/', ListaHabitaciones.as_view(), name='Lista Habitaciones'),
     path('habitacion/<int:id>/', DetalleHabitacion.as_view(), name='Busca Habitacion con id X'),
-    path('registrar_habitacion/', DetalleHabitacion.as_view(), name='Registrar Nueva Habitacion'),
+    path('registrar_habitacion/', ListaHabitaciones.as_view(), name='Registrar Nueva Habitacion'),
     path('editar_habitacion/<int:id>/', EditarHabitacion.as_view(), name='Editar Nueva Habitacion'),
 
     ## seccion Reservaciones  Estado('Pendiente', 'Pagado', 'Eliminado')

@@ -119,12 +119,6 @@ class ListaHabitaciones(APIView):
         habitacion = Habitacion.objects.all()
         serializer = HabitacionSerializer(habitacion, many=True)
         return Response(serializer.data)
-        
-class DetalleHabitacion(APIView):
-    def get(self, request, id, format=None):
-       snippets = Habitacion.objects.all().filter(id_habitacion = id)
-       serializer = HabitacionIdSerializer(snippets, many=True)
-       return Response(serializer.data)
     
     def post(self, request, format = None):
         serializer = HabitacionSerializer(data = request.data)
@@ -132,6 +126,13 @@ class DetalleHabitacion(APIView):
             serializer.save()
             return Response(serializer.data, status= status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+class DetalleHabitacion(APIView):
+    def get(self, request, id, format=None):
+       snippets = Habitacion.objects.all().filter(id_habitacion = id)
+       serializer = HabitacionIdSerializer(snippets, many=True)
+       return Response(serializer.data)
+    
     
 class EditarHabitacion(APIView):
   def get_object(self, id):
@@ -241,8 +242,8 @@ class BuscaDetalleFactura(APIView):
     
 class DetalleFactura(APIView):
     def get(self, request):
-        factura = Factura.objects.all()
-        serializr= FacturaSerializer(factura, many = True)
+        factura = Factura_Detalle.objects.all()
+        serializr= FacturaReservaSerializer(factura, many = True)
         return Response(serializr.data)
     
     def post(self, request):
